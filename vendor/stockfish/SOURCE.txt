@@ -1,0 +1,21 @@
+Stockfish 19 — lite, single-threaded WebAssembly build
+======================================================
+
+Files in this directory:
+
+  stockfish-19-lite-single.js
+  stockfish-19-lite-single.wasm
+
+Upstream build and release:
+  https://github.com/nmrugg/stockfish.js
+  https://github.com/nmrugg/stockfish.js/releases/tag/v19.0.1
+
+Engine source:
+  https://github.com/official-stockfish/Stockfish
+
+License:
+  GNU General Public License, version 3.
+  See LICENSE.txt in this directory.
+
+The engine is loaded as a classic Web Worker and controlled over the UCI
+protocol. The WASM binary must be served with the application/wasm MIME type.

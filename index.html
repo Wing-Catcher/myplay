@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A tiny arcade of useful things: calculator, dice roller, drawing canvas, snake, and minesweeper." />
+  <title>Simple — a tiny arcade of tools</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container">
+      <a class="logo" href="#home">simple<span>.</span></a>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#calculator" data-route="calculator">Calculator</a></li>
+        <li><a href="#dice" data-route="dice">Dice</a></li>
+        <li><a href="#draw" data-route="draw">Draw</a></li>
+        <li><a href="#snake" data-route="snake">Snake</a></li>
+        <li><a href="#minesweeper" data-route="minesweeper">Minesweeper</a></li>
+        <li><a href="#chess" data-route="chess">Chess</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HOME ============ -->
+    <section id="view-home" class="view">
+      <div class="container">
+        <section class="hero home-hero">
+          <p class="eyebrow">Six little toys</p>
+          <h1>Pick something<br /><em>to play with.</em></h1>
+          <p class="lede">
+            A calculator, a dice roller, a drawing pad, snake, minesweeper, and chess.
+            All in one page, all in plain HTML, CSS, and JavaScript.
+          </p>
+        </section>
+
+        <div class="tool-grid">
+          <a class="tool-link" href="#calculator">
+            <span class="tool-emoji" aria-hidden="true">🧮</span>
+            <h2>Calculator</h2>
+            <p>Quick sums with a proper order of operations.</p>
+            <span class="open">Open calculator →</span>
+          </a>
+
+          <a class="tool-link" href="#dice">
+            <span class="tool-emoji" aria-hidden="true">🎲</span>
+            <h2>Dice roller</h2>
+            <p>Roll up to ten dice with four to a hundred sides.</p>
+            <span class="open">Open dice roller →</span>
+          </a>
+
+          <a class="tool-link" href="#draw">
+            <span class="tool-emoji" aria-hidden="true">🎨</span>
+            <h2>Drawing canvas</h2>
+            <p>Sketch with a brush, erase, undo, and save a PNG.</p>
+            <span class="open">Open drawing canvas →</span>
+          </a>
+
+          <a class="tool-link" href="#snake">
+            <span class="tool-emoji" aria-hidden="true">🐍</span>
+            <h2>Snake</h2>
+            <p>The classic. Eat, grow, and try not to bite yourself.</p>
+            <span class="open">Open snake →</span>
+          </a>
+
+          <a class="tool-link" href="#minesweeper">
+            <span class="tool-emoji" aria-hidden="true">💣</span>
+            <h2>Minesweeper</h2>
+            <p>Clear the board without stepping on anything explosive.</p>
+            <span class="open">Open minesweeper →</span>
+          </a>
+
+          <a class="tool-link" href="#chess">
+            <span class="tool-emoji" aria-hidden="true">♟️</span>
+            <h2>Chess</h2>
+            <p>Play Stockfish at ten levels, or pass and play with a friend.</p>
+            <span class="open">Open chess →</span>
+          </a>
+        </div>
+
+        <p class="home-note">
+          Everything runs locally in your browser. No accounts, no tracking, no build step.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ CALCULATOR ============ -->
+    <section id="view-calculator" class="view" hidden>
+      <div class="container tool-page">
+        <a class="back-link" href="#home">← All tools</a>
+        <header class="tool-header">
+          <p class="eyebrow">01 — Numbers</p>
+          <h1>Calculator</h1>
+          <p class="lede">Use the keypad or your keyboard. It respects order of operations, so 2 + 3 × 4 is 14.</p>
+        </header>
+
+        <div class="calc" id="calc">
+          <div class="calc-display">
+            <div class="calc-history" id="calc-history">Ready when you are</div>
+            <div class="calc-output" id="calc-output" aria-live="polite">0</div>
+          </div>
+
+          <div class="calc-keys">
+            <button class="key key-fn" type="button" data-action="clear">AC</button>
+            <button class="key key-fn" type="button" data-action="backspace" aria-label="Backspace">⌫</button>
+            <button class="key key-fn" type="button" data-action="sign" aria-label="Toggle sign">±</button>
+            <button class="key key-op" type="button" data-op="/" aria-label="Divide">÷</button>
+
+            <button class="key" type="button" data-num="7">7</button>
+            <button class="key" type="button" data-num="8">8</button>
+            <button class="key" type="button" data-num="9">9</button>
+            <button class="key key-op" type="button" data-op="*" aria-label="Multiply">×</button>
+
+            <button class="key" type="button" data-num="4">4</button>
+            <button class="key" type="button" data-num="5">5</button>
+            <button class="key" type="button" data-num="6">6</button>
+            <button class="key key-op" type="button" data-op="-" aria-label="Subtract">−</button>
+
+            <button class="key" type="button" data-num="1">1</button>
+            <button class="key" type="button" data-num="2">2</button>
+            <button class="key" type="button" data-num="3">3</button>
+            <button class="key key-op" type="button" data-op="+" aria-label="Add">+</button>
+
+            <button class="key key-zero" type="button" data-num="0">0</button>
+            <button class="key" type="button" data-num=".">.</button>
+            <button class="key key-equals" type="button" data-action="equals" aria-label="Equals">=</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DICE ============ -->
+    <section id="view-dice" class="view" hidden>
+      <div class="container tool-page">
+        <a class="back-link" href="#home">← All tools</a>
+        <header class="tool-header">
+          <p class="eyebrow">02 — Chance</p>
+          <h1>Dice roller</h1>
+          <p class="lede">Pick how many dice and how many sides. Great for board games, D&amp;D, or deciding dinner.</p>
+        </header>
+
+        <div class="dice-layout">
+          <div class="tool-card dice-controls">
+            <label class="field">
+              Number of dice
+              <input id="dice-count" type="number" min="1" max="10" value="2" />
+            </label>
+
+            <label class="field">
+              Sides per die
+              <select id="dice-sides">
+                <option value="4">d4</option>
+                <option value="6" selected>d6</option>
+                <option value="8">d8</option>
+                <option value="10">d10</option>
+                <option value="12">d12</option>
+                <option value="20">d20</option>
+                <option value="100">d100</option>
+              </select>
+            </label>
+
+            <button id="dice-roll" class="btn btn-primary" type="button">Roll the dice</button>
+          </div>
+
+          <div class="tool-card dice-stage">
+            <div id="dice-results" class="dice-results" aria-live="polite"></div>
+            <p id="dice-total" class="dice-total">Total <strong>—</strong></p>
+
+            <div class="dice-history-wrap">
+              <p class="panel-label">Recent rolls</p>
+              <ul id="dice-history" class="dice-history">
+                <li class="empty">Nothing yet — give it a roll.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ DRAW ============ -->
+    <section id="view-draw" class="view" hidden>
+      <div class="container tool-page">
+        <a class="back-link" href="#home">← All tools</a>
+        <header class="tool-header">
+          <p class="eyebrow">03 — Make a mess</p>
+          <h1>Drawing canvas</h1>
+          <p class="lede">A forgiving little sketchpad. Draw with a mouse, trackpad, or finger, then save your masterpiece.</p>
+        </header>
+
+        <div class="tool-card draw-wrap">
+          <div class="draw-toolbar">
+            <div class="swatches" id="draw-swatches">
+              <button class="swatch active" type="button" style="--swatch:#1c1b19" data-color="#1c1b19" aria-label="Ink"></button>
+              <button class="swatch" type="button" style="--swatch:#2f6f4f" data-color="#2f6f4f" aria-label="Green"></button>
+              <button class="swatch" type="button" style="--swatch:#2f6f9f" data-color="#2f6f9f" aria-label="Blue"></button>
+              <button class="swatch" type="button" style="--swatch:#c0392b" data-color="#c0392b" aria-label="Red"></button>
+              <button class="swatch" type="button" style="--swatch:#d98b2b" data-color="#d98b2b" aria-label="Orange"></button>
+              <button class="swatch" type="button" style="--swatch:#6b4fa0" data-color="#6b4fa0" aria-label="Purple"></button>
+            </div>
+
+            <label class="field field-inline">
+              Color
+              <input id="draw-color" type="color" value="#1c1b19" />
+            </label>
+
+            <label class="field field-inline">
+              Brush
+              <input id="draw-size" type="range" min="1" max="40" value="6" />
+            </label>
+
+            <button id="draw-eraser" class="tool-btn" type="button" aria-pressed="false">Eraser</button>
+            <button id="draw-undo" class="tool-btn" type="button">Undo</button>
+            <button id="draw-clear" class="tool-btn" type="button">Clear</button>
+            <button id="draw-save" class="tool-btn" type="button">Save PNG</button>
+          </div>
+
+          <canvas id="draw-canvas" width="1000" height="600" aria-label="Drawing canvas"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SNAKE ============ -->
+    <section id="view-snake" class="view" hidden>
+      <div class="container tool-page">
+        <a class="back-link" href="#home">← All tools</a>
+        <header class="tool-header">
+          <p class="eyebrow">04 — Reflexes</p>
+          <h1>Snake</h1>
+          <p class="lede">Eat the red dots and grow longer. Wrap through the edges or play it straight — hitting your own tail always ends the run.</p>
+        </header>
+
+        <div class="game-layout">
+          <div class="tool-card game-panel">
+            <div class="game-hud">
+              <span>Score <strong id="snake-score">0</strong></span>
+              <span>Best <strong id="snake-best">0</strong></span>
+              <span>Status <strong id="snake-status">Ready</strong></span>
+            </div>
+
+            <div class="snake-canvas-wrap">
+              <canvas id="snake-canvas" width="420" height="420" aria-label="Snake game board"></canvas>
+              <div class="game-overlay" id="snake-overlay" hidden></div>
+            </div>
+
+            <div class="game-actions">
+              <button id="snake-start" class="btn btn-primary" type="button">Start</button>
+              <button id="snake-pause" class="btn btn-ghost" type="button" disabled>Pause</button>
+            </div>
+          </div>
+
+          <aside class="tool-card game-help">
+            <h2>How to play</h2>
+            <p id="snake-rule-note">Steer with the arrow keys or WASD. Press Space to pause.</p>
+            <p class="kbd-hint">
+              <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd>
+              <span>or</span>
+              <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
+            </p>
+
+            <div class="snake-settings">
+              <label class="chess-check">
+                <input id="snake-wrap" type="checkbox" />
+                Wrap through walls
+              </label>
+              <label class="field snake-speed-field">
+                <span>Speed <strong id="snake-speed-label">5</strong></span>
+                <input id="snake-speed" type="range" min="1" max="10" step="1" value="5" />
+              </label>
+              <p id="snake-speed-note" class="snake-speed-note">Level 5 · 125 ms per step</p>
+            </div>
+
+            <div class="dpad" id="snake-dpad">
+              <button type="button" data-dir="up" aria-label="Up">↑</button>
+              <button type="button" data-dir="left" aria-label="Left">←</button>
+              <button type="button" data-dir="down" aria-label="Down">↓</button>
+              <button type="button" data-dir="right" aria-label="Right">→</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MINESWEEPER ============ -->
+    <section id="view-minesweeper" class="view" hidden>
+      <div class="container tool-page">
+        <a class="back-link" href="#home">← All tools</a>
+        <header class="tool-header">
+          <p class="eyebrow">05 — Deduction</p>
+          <h1>Minesweeper</h1>
+          <p class="lede">Reveal every safe square. Numbers tell you how many mines touch that square. Your first click is always safe.</p>
+        </header>
+
+        <div class="tool-card ms-panel">
+          <div class="ms-toolbar">
+            <div class="ms-stat"><span>Mines</span><strong id="ms-mines">10</strong></div>
+            <button id="ms-face" class="ms-face" type="button" aria-label="New game">🙂</button>
+            <div class="ms-stat"><span>Time</span><strong id="ms-time">0</strong></div>
+
+            <label class="field field-inline">
+              Difficulty
+              <select id="ms-difficulty">
+                <option value="easy" selected>Easy · 9×9</option>
+                <option value="medium">Medium · 12×12</option>
+                <option value="hard">Hard · 16×16</option>
+              </select>
+            </label>
+
+            <button id="ms-flag-mode" class="tool-btn" type="button" aria-pressed="false">Flag mode: off</button>
+          </div>
+
+          <div id="ms-board" class="ms-board" role="grid" aria-label="Minesweeper board"></div>
+          <p id="ms-hint" class="ms-hint">Left-click to reveal · Right-click to flag</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CHESS ============ -->
+    <section id="view-chess" class="view" hidden>
+      <div class="container tool-page">
+        <a class="back-link" href="#home">← All tools</a>
+        <header class="tool-header">
+          <p class="eyebrow">06 — Strategy</p>
+          <h1>Chess</h1>
+          <p class="lede">Play Stockfish at ten strengths, or pass the board between two players. Choose a side, flip the view, step back through the moves, or ask for a hint.</p>
+        </header>
+
+        <div class="chess-layout">
+          <div class="tool-card chess-board-card">
+            <div class="chess-topbar">
+              <p class="chess-turn" id="chess-turn">White to move</p>
+              <p class="chess-engine-state" id="chess-engine-state"></p>
+            </div>
+
+            <div class="chess-board-wrap">
+              <div id="chess-board" class="chess-board" role="grid" aria-label="Chess board"></div>
+
+              <div id="chess-promotion" class="chess-promotion" hidden>
+                <div class="chess-promotion-inner">
+                  <p>Promote to</p>
+                  <div id="chess-promotion-options" class="chess-promotion-options"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chess-actions">
+              <button id="chess-new" class="btn btn-primary" type="button">New game</button>
+              <button id="chess-undo" class="btn btn-ghost" type="button">Undo</button>
+              <button id="chess-flip" class="btn btn-ghost" type="button">Flip board</button>
+              <button id="chess-hint" class="btn btn-ghost" type="button">Hint</button>
+            </div>
+
+            <p id="chess-hint-text" class="chess-hint-text" aria-live="polite"></p>
+            <p id="chess-engine-alert" class="chess-engine-alert" hidden></p>
+          </div>
+
+          <aside class="chess-panel">
+            <div class="tool-card chess-settings">
+              <div class="chess-mode" role="group" aria-label="Game mode">
+                <button class="mode-btn active" type="button" data-mode="ai" aria-pressed="true">Play Stockfish</button>
+                <button class="mode-btn" type="button" data-mode="local" aria-pressed="false">Two players</button>
+              </div>
+
+              <div id="chess-ai-settings" class="chess-ai-settings">
+                <div class="field">
+                  <span>Play as</span>
+                  <div class="side-buttons" role="group" aria-label="Choose side">
+                    <button class="side-btn active" type="button" data-side="w" aria-pressed="true">White</button>
+                    <button class="side-btn" type="button" data-side="b" aria-pressed="false">Black</button>
+                    <button class="side-btn" type="button" data-side="random" aria-pressed="false">Random</button>
+                  </div>
+                </div>
+                <p id="chess-side-note" class="chess-side-note">You are White.</p>
+
+                <label class="field chess-level-field">
+                  <span>Stockfish level <strong id="chess-level-label">5</strong></span>
+                  <input id="chess-level" type="range" min="1" max="10" step="1" value="5" />
+                </label>
+                <p id="chess-level-hint" class="chess-level-hint">Club player</p>
+
+                <label class="field chess-level-field chess-delay-field">
+                  <span>Reply delay <strong id="chess-reply-delay-label">0.5s</strong></span>
+                  <input id="chess-reply-delay" type="range" min="0" max="2000" step="100" value="500" />
+                </label>
+                <p class="chess-level-hint">Pause before Stockfish replies</p>
+              </div>
+
+              <div id="chess-local-settings" class="chess-local-settings" hidden>
+                <label class="chess-check">
+                  <input id="chess-autoflip" type="checkbox" checked />
+                  Auto-flip board each turn
+                </label>
+              </div>
+
+              <p class="chess-engine-note">
+                Stockfish 19 · GPLv3 ·
+                <a href="https://github.com/nmrugg/stockfish.js" target="_blank" rel="noreferrer">source</a>
+              </p>
+            </div>
+
+            <div class="tool-card chess-side">
+              <p class="panel-label">Captured</p>
+              <div class="chess-captured">
+                <div class="captured-row">
+                  <span class="captured-label">White took</span>
+                  <div id="chess-captured-white" class="captured-pieces"></div>
+                </div>
+                <div class="captured-row">
+                  <span class="captured-label">Black took</span>
+                  <div id="chess-captured-black" class="captured-pieces"></div>
+                </div>
+              </div>
+
+              <div class="chess-history-wrap">
+                <div class="chess-history-head">
+                  <p class="panel-label">Moves</p>
+                  <p id="chess-history-position" class="chess-history-position" aria-live="polite">Starting position</p>
+                </div>
+                <ol id="chess-history" class="chess-history" aria-label="Move history">
+                  <li class="empty">No moves yet.</li>
+                </ol>
+                <div class="chess-history-nav" role="group" aria-label="Review moves">
+                  <button id="chess-hist-first" class="chess-history-btn" type="button" aria-label="Go to the starting position" title="Starting position" disabled>⏮</button>
+                  <button id="chess-hist-prev" class="chess-history-btn" type="button" aria-label="Show the previous position" title="Previous move" disabled>◀</button>
+                  <button id="chess-hist-next" class="chess-history-btn" type="button" aria-label="Show the next position" title="Next move" disabled>▶</button>
+                  <button id="chess-hist-live" class="chess-history-btn live" type="button" aria-label="Return to the live game" title="Back to live game" disabled>⏭ <span>Live</span></button>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div id="chess-dialog" class="chess-dialog" hidden>
+          <div class="chess-dialog-card" role="dialog" aria-modal="true" aria-labelledby="chess-dialog-title">
+            <h2 id="chess-dialog-title">Start a new game?</h2>
+            <p id="chess-dialog-text">The current game will end.</p>
+            <div class="chess-dialog-actions">
+              <button id="chess-dialog-cancel" class="btn btn-ghost" type="button">Cancel</button>
+              <button id="chess-dialog-confirm" class="btn btn-primary" type="button">Start new game</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> from wingcatcher</p>
+      <a href="mailto:hello@example.com">hello@example.com</a>
+    </div>
+  </footer>
+
+  <script src="vendor/chess.js"></script>
+  <script src="tools/calculator.js"></script>
+  <script src="tools/dice.js"></script>
+  <script src="tools/draw.js"></script>
+  <script src="tools/snake.js"></script>
+  <script src="tools/minesweeper.js"></script>
+  <script src="tools/chess.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
